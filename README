@@ -16,5 +16,20 @@ In compenso, questo programmino è software libero (GPL-3+), quindi se senti cos
 queste caratteristiche puoi tranquillamente implementarle (e poi, per favore, mandarmi le tue
 modifiche, così le aggiungo al progetto).
 
+== UTILIZZO ==
+Per utilizzare il programma è necessario avere installato i binding Python per sqlite
+(modulo sqlite2). Inoltre è necessario avere nella directory dalla quale si esegue il programma
+un file "bibbia.sqlite" che contiene la Bibbia in formato SQLite.
+
+Poi dare il comando:
+
+./bibbia.py search tempo - Restituisce tutti i versetti che contengono la parola "tempo"
+./bibbia.py search tempo Dio - Restituisce tutti i versetti che contengono entrambe le parole "tempo" e "Dio"
+./bibbia.py show Gv - Mostra l'intero Vangelo di Giovanni
+./bibbia.py show Gv 21 - Mostra il capitolo 21 del Vangelo di Giovanni
+./bibbia.py show Gv 21, 7 - Mostra Gv 21, 7
+
+La ricerca di parole non distingue tra maiuscole e minuscole.
+
 -- Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
 
