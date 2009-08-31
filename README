@@ -1,0 +1,20 @@
+
+Questa applicazione permette di ricercare brani e mostrare citazioni bibliche, utilizzando
+un database SQLite che contiene il testo biblico diviso in libri, capitoli, versetti e lettere.
+
+È ancora molto sperimentale e difetta di molte caratteristiche. Per esempio:
+ * Non ordina correttamente i versetti che resistuisce, ma li stampa nell'ordine con cui li riceve
+   dal database.
+ * Non ha ancora un buon riconoscitore di citazioni: in particolare non è in grado di riconoscere
+   gli intervalli di citazioni (del tipo "Gv 1, 2-3" o "Gv 1,2-3,4").
+ * La funzione di ricerca è piuttosto rudimentale e poco flessibile.
+ * Manca un'interfaccia grafica comoda e la possibilità di formattare il testo in output
+   secondo schemi forniti dall'utente.
+ * Tante altre cose...
+
+In compenso, questo programmino è software libero (GPL-3+), quindi se senti così tanto la mancanza di
+queste caratteristiche puoi tranquillamente implementarle (e poi, per favore, mandarmi le tue
+modifiche, così le aggiungo al progetto).
+
+-- Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
+
