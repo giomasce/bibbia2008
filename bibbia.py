@@ -24,7 +24,7 @@ def connectDB(dbFilename = "bibbia.sqlite"):
 	return dbCur
 
 def ricerca(argv):
-	query = "select * from formattata where"
+	query = "select * from bibbia where"
 	first = True
 	for i in argv:
 		andText = ""
@@ -51,13 +51,13 @@ Se sei convinto che sia giusta, per favore segnala un bug."""
 	else:
 		if match.group(2) == None:
 			# Citazione solo libro
-			query = "select * from formattata where libro = '%s'" % (match.group(1))
+			query = "select * from bibbia where libro = '%s'" % (match.group(1))
 		elif match.group(3) == None:
 			# Citazione libro e capitolo
-			query = "select * from formattata where libro = '%s' and capitolo = %s" % (match.group(1), match.group(2))
+			query = "select * from bibbia where libro = '%s' and capitolo = %s" % (match.group(1), match.group(2))
 		else:
 			# Citazione completa
-			query = "select * from formattata where libro = '%s' and capitolo = %s and versetto = %s" % (match.group(1), match.group(2), match.group(3))
+			query = "select * from bibbia where libro = '%s' and capitolo = %s and versetto = %s" % (match.group(1), match.group(2), match.group(3))
 	cursor = connectDB()
 	cursor.execute(query)
 	# Qui bisognerebbe ordinare correttamente i dati, sia per gestire
