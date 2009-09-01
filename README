@@ -31,5 +31,16 @@ Poi dare il comando:
 
 La ricerca di parole non distingue tra maiuscole e minuscole.
 
+
+== SCRIPT create-bibbia-sqlite.sh ==
+Questo script prende in input un file "bibbia.db" (come creato dagli script di Gian Piero Carzino)
+e lo converte in uno script SQL per SQLite, che crea correttamente il database bibbia.sqlite.
+
+Per utilizzare basta dare il comando:
+
+./create-bibbia-sqlite.sh < bibbia.db | sqlite3 bibbia.sqlite
+
+Sul mio computer la generazione richiede circa cinque secondi.
+
 -- Giovanni Mascellani <mascellani@poisson.phc.unipi.it>
 
