@@ -24,7 +24,7 @@ def connectDB(dbFilename = "bibbia.sqlite"):
 	return dbCur
 
 def ricerca(argv):
-	query = "select * from bibbia where"
+	query = "select libro, capitolo, versetto, lettera, testo from bibbia where"
 	first = True
 	for i in argv:
 		andText = ""
@@ -32,6 +32,7 @@ def ricerca(argv):
 			andText = " and"
 		query += "%s testo like '%%%s%%'" % (andText, i)
 		first = False
+	query += " order by indice asc"
 	cursor = connectDB()
 	cursor.execute(query)
 	number = 0
@@ -44,6 +45,7 @@ def mostra(argv):
 	citazione = " ".join(argv)
 	regex = re.compile(" *([^ ]+) *(?:([0-9]+)(?: *, *([0-9]+))?)? *")
 	match = regex.match(citazione)
+	query = "select libro, capitolo, versetto, lettera, testo from bibbia where "
 	if match == None:
 		print """Non riesco a riconoscere la citazione che mi hai dato.
 Se sei convinto che sia giusta, per favore segnala un bug."""
@@ -51,13 +53,14 @@ Se sei convinto che sia giusta, per favore segnala un bug."""
 	else:
 		if match.group(2) == None:
 			# Citazione solo libro
-			query = "select * from bibbia where libro = '%s'" % (match.group(1))
+			query += "libro = '%s'" % (match.group(1))
 		elif match.group(3) == None:
 			# Citazione libro e capitolo
-			query = "select * from bibbia where libro = '%s' and capitolo = %s" % (match.group(1), match.group(2))
+			query += "libro = '%s' and capitolo = %s" % (match.group(1), match.group(2))
 		else:
 			# Citazione completa
-			query = "select * from bibbia where libro = '%s' and capitolo = %s and versetto = %s" % (match.group(1), match.group(2), match.group(3))
+			query += "libro = '%s' and capitolo = %s and versetto = %s" % (match.group(1), match.group(2), match.group(3))
+	query += " order by indice asc"
 	cursor = connectDB()
 	cursor.execute(query)
 	# Qui bisognerebbe ordinare correttamente i dati, sia per gestire
